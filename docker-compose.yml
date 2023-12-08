@@ -1,0 +1,19 @@
+version: '3.3'
+
+services:
+  frontend: 
+    image: node:alpine
+    container_name: alexcell.frontend
+    ports:
+      - 4000:4000
+    working_dir: /var/www/alexcell.frontend
+    volumes:
+      - .:/var/www/alexcell.frontend
+    networks:
+      - alexcell_network
+    tty: true
+    command: sh ./run.sh
+
+networks:
+  alexcell_network:
+    driver: bridge
