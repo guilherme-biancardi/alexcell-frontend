@@ -1,8 +1,5 @@
 <template>
-  <div>
-    z
-    <RouterView name="root"></RouterView>
-  </div>
+ <h2>entrar</h2>
 </template>
 
 <script setup lang="ts">
