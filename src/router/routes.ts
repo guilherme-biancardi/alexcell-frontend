@@ -1,12 +1,18 @@
 import { createRoute } from '@/ts/createRoute'
 import { signInRoute } from './routes/loginRoutes'
+import { authenticatedMiddleware } from '@/middlewares/authenticated'
 
 const rootRoute = createRoute('/', 'root')
-rootRoute.setRedirect('login')
+rootRoute.setRedirect('app')
+
+const appRoute = createRoute('/app', 'app')
+appRoute.setComponent(import('@/views/app/AppView.vue'), 'root')
+appRoute.setBeforeEnter(authenticatedMiddleware)
 
 const loginRoute = createRoute('/login', 'login')
 loginRoute.setComponent(import('@/views/login/LoginView.vue'), 'root')
 loginRoute.setRedirect('signIn')
 loginRoute.setChildren([signInRoute.get()])
+loginRoute.setBeforeEnter(authenticatedMiddleware)
 
-export const useRoutes = () => [rootRoute.get(), loginRoute.get()]
+export const useRoutes = () => [rootRoute.get(), loginRoute.get(), appRoute.get()]
