@@ -14,7 +14,7 @@
   --light-dark: #eee;
   --light-darkness: #e0e0e0;
 
-  --gray: #ddd;
+  --gray-light: #ddd;
   --gray-lightness: #bbb;
   --gray-medium: #777;
   --gray-dark: #555;
@@ -34,8 +34,31 @@
 button, input{
   outline: none;
   border: none;
+  background-color: transparent;
 }
 
 ul{
   list-style: none;
+}
+
+/* transitions */
+.fade-enter-active,
+.fade-leave-active {
+  transition: all 0.2s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.login-fade-enter-active,
+.login-fade-leave-active {
+  transition: all 0.2s ease;
+}
+
+.login-fade-enter-from,
+.login-fade-leave-to {
+  opacity: 0;
+  transform: translateX(-8px);
 }

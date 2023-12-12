@@ -6,4 +6,9 @@ interface Request<Res> {
 
 export type ApiError = AxiosError<{ message: string }>
 
-export type RequestFactory<Req, Res> = (params: Req, options?: AxiosRequestConfig) => Request<Res>
+type ApiResponseDefault = { message: string }
+
+export type RequestFactory<Req, Res = ApiResponseDefault> = (
+  params: Req,
+  options?: AxiosRequestConfig
+) => Request<Res>

@@ -3,12 +3,17 @@
     <template v-for="(input, index) in state.inputs" :key="index">
       <InputComponent :="input" @select-value="(val) => (input.value = val)"></InputComponent>
     </template>
+    <div class="sign-in-links">
+      <RouterLink v-for="(link, index) in state.links" :key="index" :to="{ name: link.to }">
+        {{ link.label }}
+      </RouterLink>
+    </div>
     <ButtonFilledComponent :="submitButton">{{ submitButton.text }}</ButtonFilledComponent>
   </form>
 </template>
 
 <script setup lang="ts">
-import { useUtil } from '@/ts/utils'
+import { useUtil, type Input } from '@/ts/utils'
 import { mdiAt, mdiFormTextboxPassword } from '@mdi/js'
 import { computed, reactive } from 'vue'
 import InputComponent from '../utils/InputComponent.vue'
@@ -16,8 +21,8 @@ import ButtonFilledComponent from '../utils/ButtonFilledComponent.vue'
 import { loginRequest } from '@/requests/auth/request'
 import { useAppStore } from '@/stores/appStore'
 import { useRouter } from 'vue-router'
-import type { AxiosError } from 'node_modules/axios/index.cjs'
 import type { ApiError } from '@/requests'
+import type { Routes } from '@/ts/createRoute'
 
 const { useInput, useButton } = useUtil()
 const appStore = useAppStore()
@@ -41,8 +46,28 @@ const submitButton = computed(() => {
   return button.get()
 })
 
-const state = reactive({
-  inputs: inputsComputed.value
+type SignInLink = {
+  label: string
+  to: Routes
+}
+
+interface SignInForm {
+  inputs: Input[]
+  links: SignInLink[]
+}
+
+const state = reactive<SignInForm>({
+  inputs: inputsComputed.value,
+  links: [
+    {
+      label: 'Esqueceu sua senha?',
+      to: 'forgotPassword'
+    },
+    {
+      label: 'Reenviar link de ativação',
+      to: 'resendActivationLink'
+    }
+  ]
 })
 
 const onSubmit = () => {
@@ -80,6 +105,20 @@ const onSubmit = () => {
   height: 100%;
   display: flex;
   flex-direction: column;
-  row-gap: 24px;
+  row-gap: 20px;
+}
+
+.sign-in-links{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.sign-in-links a{
+  font-size: 0.85em;
+  color: var(--primary-light);
+  font-weight: 500;
 }
 </style>

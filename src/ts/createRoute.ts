@@ -2,9 +2,9 @@ import type { RouteRecordRaw } from 'vue-router'
 
 type RouterKeys = keyof RouteRecordRaw
 
-type LoginRoutes = 'login' | 'signIn'
+type LoginRoutes = 'login' | 'signIn' | 'forgotPassword' | 'resendActivationLink' | 'resetPasword'
 type AppRoutes = 'app'
-type Routes = 'root' | LoginRoutes | AppRoutes
+export type Routes = 'root' | LoginRoutes | AppRoutes
 
 type RouterViews = 'root' | 'login'
 

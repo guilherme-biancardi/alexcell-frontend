@@ -48,6 +48,7 @@ const style = computed(() => {
   font-size: 1em;
   font-weight: 600;
   color: var(--primary);
+  cursor: pointer;
 }
 
 .button-text:disabled {

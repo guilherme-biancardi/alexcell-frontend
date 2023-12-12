@@ -9,3 +9,10 @@ export interface LoginResponse {
   }
   message: string
 }
+
+export interface ResetPasswordRequest {
+  email: string;
+  password: string;
+  password_confirmation: string;
+  token: string;
+}

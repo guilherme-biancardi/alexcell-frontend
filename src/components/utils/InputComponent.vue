@@ -55,7 +55,7 @@ watch(
   padding-right: var(--padding-right);
   background-color: var(--light-lightness);
   border-radius: 8px;
-  border: 1px solid var(--gray);
+  border: 1px solid var(--gray-light);
   font-size: 0.95em;
   transition: all 0.2s ease;
 }
