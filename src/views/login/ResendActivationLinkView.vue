@@ -13,10 +13,10 @@
 </template>
 
 <script setup lang="ts">
-import LoginContent from '@/components/contents/LoginContent.vue'
-import ResendActivationLinkForm from '@/components/forms/ResendActivationLinkForm.vue'
-import IconComponent from '@/components/utils/IconComponent.vue'
-import { mdiEmailFastOutline } from '@mdi/js'
+import LoginContent from '@/components/contents/LoginContent.vue';
+import ResendActivationLinkForm from '@/components/forms/ResendActivationLinkForm.vue';
+import IconComponent from '@/components/utils/IconComponent.vue';
+import { mdiEmailFastOutline } from '@mdi/js';
 </script>
 
 <style scoped>
@@ -34,11 +34,11 @@ import { mdiEmailFastOutline } from '@mdi/js'
   color: var(--primary-dark);
 }
 
-.resend-activation-link-text span h1{
+.resend-activation-link-text span h1 {
   font-size: 1.2em;
 }
 
-.resend-activation-link-text h2{
+.resend-activation-link-text h2 {
   font-size: 0.95em;
   color: var(--gray-dark);
   font-weight: 500;

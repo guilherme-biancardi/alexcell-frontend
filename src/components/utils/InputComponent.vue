@@ -15,29 +15,29 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, watch } from 'vue'
-import IconComponent from '../utils/IconComponent.vue'
-import { vMaska } from 'maska'
-import type { Input } from '@/ts/utils'
+import { computed, reactive, watch } from 'vue';
+import IconComponent from '../utils/IconComponent.vue';
+import { vMaska } from 'maska';
+import type { Input } from '@/ts/utils';
 
 const emit = defineEmits<{
-  (event: 'selectValue', val: Input['value']): void
-}>()
+  (event: 'selectValue', val: Input['value']): void;
+}>();
 
-const props = defineProps<Input>()
+const props = defineProps<Input>();
 
 type InputState = {
-  value: Input['value']
-}
+  value: Input['value'];
+};
 
 const state = reactive<InputState>({
   value: props.value
-})
+});
 
 watch(
   computed(() => state.value),
   (value) => emit('selectValue', value)
-)
+);
 </script>
 
 <style scoped>

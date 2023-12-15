@@ -5,7 +5,7 @@
         <h1>Recuperação de Senha</h1>
         <IconComponent :path="mdiFormTextboxPassword" :size="32"></IconComponent>
       </span>
-      <h2>Informe seu e-mail para redefinir sua senha. </h2>
+      <h2>Informe seu e-mail para redefinir sua senha.</h2>
     </div>
 
     <ForgotPasswordForm></ForgotPasswordForm>
@@ -13,10 +13,10 @@
 </template>
 
 <script setup lang="ts">
-import LoginContent from '@/components/contents/LoginContent.vue'
-import ForgotPasswordForm from '@/components/forms/ForgotPasswordForm.vue'
-import IconComponent from '@/components/utils/IconComponent.vue'
-import { mdiFormTextboxPassword } from '@mdi/js'
+import LoginContent from '@/components/contents/LoginContent.vue';
+import ForgotPasswordForm from '@/components/forms/ForgotPasswordForm.vue';
+import IconComponent from '@/components/utils/IconComponent.vue';
+import { mdiFormTextboxPassword } from '@mdi/js';
 </script>
 
 <style scoped>

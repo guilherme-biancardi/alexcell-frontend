@@ -1,22 +1,32 @@
 <template>
-  <div>{{ user }}</div>
+  <div>{{ appStore.getUser }}</div>
 </template>
 
 <script setup lang="ts">
-import { getMeRequest } from '@/requests/user/request'
-import { onMounted, ref } from 'vue'
+import type { ApiError } from '@/requests';
+import { getMeRequest } from '@/requests/user/request';
+import { useAppStore } from '@/stores/appStore';
+import { useRouter } from 'vue-router';
 
-const user = ref()
+const appStore = useAppStore();
+const requestUser = getMeRequest(null);
+const router = useRouter();
 
-onMounted(() => {
-  getMeRequest(null)
-    .execute()
-    .then((res) => {
-      if (res.data) {
-        user.value = res.data.data
-      }
-    })
-})
+try {
+  const { data } = await requestUser.execute();
+  appStore.setUser(data.data);
+
+} catch (err) {
+  const error = err as ApiError;
+
+  if (error.response) {
+    appStore.notify({ message: error.response.data.message, type: 'error' });
+  }
+
+  appStore.setToken(null);
+  appStore.setUser(null);
+  router.replace({ name: 'signIn' });
+}
 </script>
 
 <style scoped></style>

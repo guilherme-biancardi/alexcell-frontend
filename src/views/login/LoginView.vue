@@ -10,12 +10,12 @@
 </template>
 
 <script setup lang="ts">
-import RootContent from '@/components/contents/RootContent.vue'
-import WavesSvg from '@/components/svg/WavesSvg.vue'
-import { useMediaQuery } from '@vueuse/core'
+import RootContent from '@/components/contents/RootContent.vue';
+import WavesSvg from '@/components/svg/WavesSvg.vue';
+import { useMediaQuery } from '@vueuse/core';
 
-const CONTENT_WIDTH = 500 as const
-const isLargeScreen = useMediaQuery(`(min-width: ${CONTENT_WIDTH}px)`)
+const CONTENT_WIDTH = 500 as const;
+const isLargeScreen = useMediaQuery(`(min-width: ${CONTENT_WIDTH}px)`);
 </script>
 
 <style scoped>

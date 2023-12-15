@@ -5,20 +5,20 @@
 </template>
 
 <script setup lang="ts">
-import { useMediaQuery } from '@vueuse/core'
-import { computed, type StyleValue } from 'vue'
+import { useMediaQuery } from '@vueuse/core';
+import { computed, type StyleValue } from 'vue';
 
 interface RootContent {
-  width: number
+  width: number;
 }
 
-const props = defineProps<RootContent>()
+const props = defineProps<RootContent>();
 
-const fullContent = useMediaQuery(`(max-width: ${props.width}px)`)
+const fullContent = useMediaQuery(`(max-width: ${props.width}px)`);
 
 const styles = computed<StyleValue>(() => ({
   width: fullContent.value ? '100vw' : `${props.width}px`
-}))
+}));
 </script>
 
 <style scoped>

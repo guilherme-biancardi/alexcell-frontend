@@ -1,8 +1,13 @@
 <template>
   <NotificationsList></NotificationsList>
-  <main>
-    <RouterView name="root"></RouterView>
-  </main>
+
+  <Transition name="fade">
+    <Suspense>
+      <main>
+        <RouterView name="root"></RouterView>
+      </main>
+    </Suspense>
+  </Transition>
 </template>
 
 <script setup lang="ts">

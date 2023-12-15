@@ -8,65 +8,65 @@
 </template>
 
 <script setup lang="ts">
-import { useUtil, type Input } from '@/ts/utils'
-import { mdiAt } from '@mdi/js'
-import { computed, reactive } from 'vue'
-import InputComponent from '../utils/InputComponent.vue'
-import ButtonFilledComponent from '../utils/ButtonFilledComponent.vue'
-import { forgotPasswordRequest } from '@/requests/user/request'
-import { useAppStore } from '@/stores/appStore'
-import { useRouter } from 'vue-router'
-import type { ApiError } from '@/requests'
+import { useUtil, type Input } from '@/ts/utils';
+import { mdiAt } from '@mdi/js';
+import { computed, reactive } from 'vue';
+import InputComponent from '../utils/InputComponent.vue';
+import ButtonFilledComponent from '../utils/ButtonFilledComponent.vue';
+import { forgotPasswordRequest } from '@/requests/user/request';
+import { useAppStore } from '@/stores/appStore';
+import { useRouter } from 'vue-router';
+import type { ApiError } from '@/requests';
 
-const { useButton, useInput } = useUtil()
-const appStore = useAppStore()
-const router = useRouter()
+const { useButton, useInput } = useUtil();
+const appStore = useAppStore();
+const router = useRouter();
 
 interface ForgotPasswordForm {
-  inputs: Input[]
+  inputs: Input[];
 }
 
 const inputsComputed = computed(() => {
-  const email = useInput('email', 'email')
-  email.setIcon({ path: mdiAt })
-  email.setAttributes({ placeholder: 'E-mail:', required: true })
+  const email = useInput('email', 'email');
+  email.setIcon({ path: mdiAt });
+  email.setAttributes({ placeholder: 'E-mail:', required: true });
 
-  return [email.get()]
-})
+  return [email.get()];
+});
 
 const submitButton = computed(() => {
-  const button = useButton('submit', 'Enviar')
+  const button = useButton('submit', 'Enviar');
 
-  return button.get()
-})
+  return button.get();
+});
 
 const state = reactive<ForgotPasswordForm>({
   inputs: inputsComputed.value
-})
+});
 
 const onSubmit = () => {
-  const [email] = state.inputs
+  const [email] = state.inputs;
 
   const request = forgotPasswordRequest({
     email: email.value as string
-  })
+  });
 
   request
     .execute()
     .then((res) => {
       if (res.data) {
-        appStore.notify({ message: res.data.message, type: 'success' })
-        router.push({ name: 'signIn' })
+        appStore.notify({ message: res.data.message, type: 'success' });
+        router.push({ name: 'signIn' });
       }
     })
     .catch((res) => {
-      const error = res as ApiError
+      const error = res as ApiError;
 
       if (error.response) {
-        appStore.notify({ message: error.response.data.message, type: 'error' })
+        appStore.notify({ message: error.response.data.message, type: 'error' });
       }
-    })
-}
+    });
+};
 </script>
 
 <style scoped>

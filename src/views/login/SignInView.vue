@@ -9,11 +9,12 @@
 </template>
 
 <script setup lang="ts">
-import SignInForm from '@/components/forms/SignInForm.vue'
+import SignInForm from '@/components/forms/SignInForm.vue';
 </script>
 
 <style scoped>
-.sign-in-content, .sign-in-text{
+.sign-in-content,
+.sign-in-text {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -21,11 +22,11 @@ import SignInForm from '@/components/forms/SignInForm.vue'
   align-items: center;
 }
 
-.sign-in-content{
+.sign-in-content {
   row-gap: 16px;
 }
 
-.sign-in-text{
+.sign-in-text {
   margin-bottom: 14px;
 }
 

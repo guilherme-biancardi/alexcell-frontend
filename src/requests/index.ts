@@ -1,14 +1,14 @@
-import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
+import type { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 
 interface Request<Res> {
-  execute: () => Promise<AxiosResponse<Res>>
+  execute: () => Promise<AxiosResponse<Res>>;
 }
 
-export type ApiError = AxiosError<{ message: string }>
+export type ApiError = AxiosError<{ message: string }>;
 
-type ApiResponseDefault = { message: string }
+type ApiResponseDefault = { message: string };
 
 export type RequestFactory<Req, Res = ApiResponseDefault> = (
   params: Req,
   options?: AxiosRequestConfig
-) => Request<Res>
+) => Request<Res>;

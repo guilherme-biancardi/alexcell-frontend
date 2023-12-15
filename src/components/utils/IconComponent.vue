@@ -3,14 +3,14 @@
 </template>
 
 <script setup lang="ts">
-import SvgIcon from '@jamescoyle/vue-icon'
+import SvgIcon from '@jamescoyle/vue-icon';
 
 export interface Icon {
-  path: string
-  size?: number
+  path: string;
+  size?: number;
 }
 
-defineProps<Icon>()
+defineProps<Icon>();
 </script>
 
 <style scoped></style>
