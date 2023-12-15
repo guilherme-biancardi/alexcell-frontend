@@ -13,10 +13,10 @@
 </template>
 
 <script setup lang="ts">
-import LoginContent from '@/components/contents/LoginContent.vue'
+import LoginContent from '@/components/contents/LoginContent.vue';
 import ResetPasswordForm from '@/components/forms/ResetPasswordForm.vue';
-import IconComponent from '@/components/utils/IconComponent.vue'
-import { mdiLockOutline } from '@mdi/js'
+import IconComponent from '@/components/utils/IconComponent.vue';
+import { mdiLockOutline } from '@mdi/js';
 </script>
 
 <style scoped>

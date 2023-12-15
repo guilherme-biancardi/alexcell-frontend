@@ -37,10 +37,10 @@
 </template>
 
 <script setup lang="ts">
-import { useCssVar } from '@vueuse/core'
+import { useCssVar } from '@vueuse/core';
 
-const primary = useCssVar('--primary')
-const primaryDark = useCssVar('--primary-dark')
+const primary = useCssVar('--primary');
+const primaryDark = useCssVar('--primary-dark');
 </script>
 
 <style scoped></style>

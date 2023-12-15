@@ -10,31 +10,31 @@
 </template>
 
 <script setup lang="ts">
-import { useUtil } from '@/ts/utils'
-import { mdiArrowLeft } from '@mdi/js'
-import { computed } from 'vue'
-import { useRouter } from 'vue-router'
-import ButtonTextComponent from '../utils/ButtonTextComponent.vue'
+import { useUtil } from '@/ts/utils';
+import { mdiArrowLeft } from '@mdi/js';
+import { computed } from 'vue';
+import { useRouter } from 'vue-router';
+import ButtonTextComponent from '../utils/ButtonTextComponent.vue';
 
-const { useButton } = useUtil()
-const router = useRouter()
+const { useButton } = useUtil();
+const router = useRouter();
 
 interface LoginContent {
-  gap: number
+  gap: number;
 }
 
 withDefaults(defineProps<LoginContent>(), {
   gap: 8
-})
+});
 
 const backToSignButton = computed(() => {
-  const button = useButton('button', 'Voltar')
-  button.setIcon({ path: mdiArrowLeft })
-  button.setClick(() => router.push({ name: 'signIn' }))
-  button.invertIcon()
+  const button = useButton('button', 'Voltar');
+  button.setIcon({ path: mdiArrowLeft });
+  button.setClick(() => router.push({ name: 'signIn' }));
+  button.invertIcon();
 
-  return button.get()
-})
+  return button.get();
+});
 </script>
 
 <style scoped>

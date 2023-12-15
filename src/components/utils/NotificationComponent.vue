@@ -10,25 +10,25 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, reactive, useCssModule } from 'vue'
-import { useAppStore } from '../../stores/appStore'
-import IconComponent from './IconComponent.vue'
-import { mdiAlert, mdiCancel, mdiCheck, mdiEmailFastOutline } from '@mdi/js'
+import { computed, onMounted, reactive, useCssModule } from 'vue';
+import { useAppStore } from '../../stores/appStore';
+import IconComponent from './IconComponent.vue';
+import { mdiAlert, mdiCancel, mdiCheck, mdiEmailFastOutline } from '@mdi/js';
 
-const appStore = useAppStore()
-const css = useCssModule()
+const appStore = useAppStore();
+const css = useCssModule();
 
 export interface Notification {
-  message: string
-  type: 'success' | 'send' | 'error' | 'warning'
+  message: string;
+  type: 'success' | 'send' | 'error' | 'warning';
 }
 
 type NotificationProps = {
-  notification: Notification
-  index: number
-}
+  notification: Notification;
+  index: number;
+};
 
-const props = defineProps<NotificationProps>()
+const props = defineProps<NotificationProps>();
 
 const state = reactive({
   types: {
@@ -49,14 +49,14 @@ const state = reactive({
       icon: mdiAlert
     })
   }
-})
+});
 
-const notificationStyle = computed(() => state.types[props.notification.type]())
+const notificationStyle = computed(() => state.types[props.notification.type]());
 
 onMounted(() => {
-  const timer = 3000 + props.index * 1000
-  setTimeout(appStore.closeNotification, timer)
-})
+  const timer = 3000 + props.index * 1000;
+  setTimeout(appStore.closeNotification, timer);
+});
 </script>
 
 <style module>

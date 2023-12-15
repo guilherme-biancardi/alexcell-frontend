@@ -13,27 +13,27 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
-import IconComponent from '../utils/IconComponent.vue'
-import type { Button } from '@/ts/utils'
+import { computed } from 'vue';
+import IconComponent from '../utils/IconComponent.vue';
+import type { Button } from '@/ts/utils';
 
 const props = withDefaults(defineProps<Button>(), {
   type: 'button',
   visible: true
-})
+});
 
 const style = computed(() => {
-  const styles = props.buttonStyle ?? {}
+  const styles = props.buttonStyle ?? {};
 
   Object.assign(styles, {
     maxWidth: `${props.maxWidth}px` ?? '100%',
     flexDirection: props.invertIcon ? 'row-reverse' : 'row',
     '--hover-background': props.hover?.backgroundColor,
     '--hover-color': props.hover?.color
-  })
+  });
 
-  return styles
-})
+  return styles;
+});
 </script>
 
 <style scoped>

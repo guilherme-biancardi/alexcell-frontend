@@ -7,10 +7,10 @@
 </template>
 
 <script setup lang="ts">
-import { useAppStore } from '../stores/appStore'
+import { useAppStore } from '../stores/appStore';
 import NotificationComponent from './utils/NotificationComponent.vue';
 
-const appStore = useAppStore()
+const appStore = useAppStore();
 </script>
 
 <style scoped>
