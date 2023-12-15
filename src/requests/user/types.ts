@@ -1,9 +1,12 @@
+export interface User {
+  id: number;
+  name: string;
+  email: string;
+  isOwner: boolean;
+}
+
 export interface GetMeResponse {
-  data: {
-    id: number;
-    name: string;
-    email: string;
-  };
+  data: User;
 }
 
 export interface SendActivationLinkRequest {
