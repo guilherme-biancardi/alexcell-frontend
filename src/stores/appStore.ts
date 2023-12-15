@@ -1,15 +1,11 @@
 import type { Notification } from '@/components/utils/NotificationComponent.vue';
+import type { User } from '@/requests/user/types';
 import { useLocalStorage } from '@vueuse/core';
 import { defineStore } from 'pinia';
 import { computed, reactive } from 'vue';
 
 interface AppStoreStorage {
   token: string | null;
-}
-
-interface User {
-  name: string;
-  id: number;
 }
 
 interface AppStoreState {
@@ -34,16 +30,22 @@ export const useAppStore = defineStore('app', () => {
   const getNotifications = computed(() => state.notifications);
 
   const setToken = (token: AppStoreStorage['token']) => (storage.value.token = token);
-  const setUser = (user: AppStoreState['user']) => state.user = user;
+  const setUser = (user: AppStoreState['user']) => (state.user = user);
 
   const notify = (notification: Notification) => state.notifications.unshift(notification);
   const closeNotification = () => state.notifications.pop();
+
+  function $reset() {
+    setToken(null);
+    setUser(null);
+  }
 
   return {
     getToken,
     getUser,
     isAuthenticated,
     getNotifications,
+    $reset,
     setToken,
     setUser,
     notify,

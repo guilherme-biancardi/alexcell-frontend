@@ -38,7 +38,7 @@ input {
   background-color: transparent;
 }
 
-ul {
+ul, menu {
   list-style: none;
 }
 
