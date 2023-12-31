@@ -2,7 +2,7 @@
   <nav class="menu-content">
     <menu>
       <template v-for="(item, index) in visibleMenuItens" :key="index">
-        <li class="menu-item">
+        <li class="menu-item" :class="{ 'item-selected': route.name === item.to }">
           <RouterLink :to="{ name: item.to }">
             <IconComponent :="item.icon"></IconComponent>
           </RouterLink>
@@ -26,9 +26,10 @@ import IconComponent from './utils/IconComponent.vue';
 import ButtonTextComponent from './utils/ButtonTextComponent.vue';
 import { useUtil } from '@/ts/utils';
 import { logoutRequest } from '@/requests/auth/request';
-import { useRouter } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 const router = useRouter();
+const route = useRoute();
 
 type CssModule = 'logoutBackground' | 'logoutColor' | 'logoutBackgroundHover' | 'logoutColorHover';
 const css = useCssModule() as Record<CssModule, string>;
@@ -67,16 +68,16 @@ interface MenuItem {
 
 const menuItens = shallowRef<MenuItem[]>([
   {
-    to: 'app',
+    to: 'admin',
     tooltip: 'administração',
     icon: {
       path: mdiAccountCogOutline,
-      size: 32
+      size: 30
     },
     visible: isOwner.value
   },
   {
-    to: 'app',
+    to: 'devices',
     tooltip: 'celulares',
     icon: {
       path: mdiCellphone,
@@ -102,10 +103,10 @@ const visibleMenuItens = computed(() => menuItens.value.filter((item) => item.vi
 .menu-content {
   width: 100%;
   height: 100%;
-  padding: 20px 8px;
-  padding-bottom: 8px;
+  padding: 12px 8px;
   background-color: var(--light);
   border-right: 1px solid var(--light-dark);
+  z-index: 1;
 }
 
 .menu-content menu {
@@ -126,11 +127,15 @@ const visibleMenuItens = computed(() => menuItens.value.filter((item) => item.vi
   transition: all 150ms ease;
 }
 
-.menu-item,
+.menu-item, .btn-logout{
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.menu-item a,
 .btn-logout {
   width: 100%;
   padding: 10px;
-  border-radius: 8px;
 }
 
 .menu-content li:last-of-type {
@@ -147,6 +152,14 @@ const visibleMenuItens = computed(() => menuItens.value.filter((item) => item.vi
 
 .menu-item a {
   color: var(--primary);
+}
+
+.item-selected {
+  background-color: var(--primary);
+}
+
+.item-selected a {
+  color: #fff;
 }
 
 .menu-tooltip {

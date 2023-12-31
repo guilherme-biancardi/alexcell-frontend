@@ -1,5 +1,5 @@
 <template>
-  <div class="input-content" :style="{ '--padding-right': `${(icon?.size ?? 12) * 2}px` }">
+  <div class="input-content" :style="{ '--padding-right': `${icon?.size ? icon.size * 2 : 12}px` }">
     <label :for="name" v-if="label">{{ label }}</label>
     <input
       :type="type"
@@ -9,6 +9,7 @@
       :data-maska="mask"
       :data-maska-tokens="maskTokens"
       :id="name"
+      :style="inputStyle"
     />
     <IconComponent :="icon" class="input-icon" v-if="icon"></IconComponent>
   </div>
@@ -47,6 +48,7 @@ watch(
   position: relative;
   display: flex;
   align-items: center;
+  width: 100%;
 }
 
 .input-content input {

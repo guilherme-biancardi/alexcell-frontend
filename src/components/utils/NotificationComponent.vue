@@ -10,7 +10,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, onMounted, reactive, useCssModule } from 'vue';
+import { computed, onMounted, reactive, shallowReactive, useCssModule } from 'vue';
 import { useAppStore } from '../../stores/appStore';
 import IconComponent from './IconComponent.vue';
 import { mdiAlert, mdiCancel, mdiCheck, mdiEmailFastOutline } from '@mdi/js';
@@ -28,9 +28,18 @@ type NotificationProps = {
   index: number;
 };
 
+type NotificationState = {
+  types: {
+    [key in Notification['type']]: () => {
+      color: string;
+      icon: string;
+    };
+  };
+};
+
 const props = defineProps<NotificationProps>();
 
-const state = reactive({
+const state = shallowReactive<NotificationState>({
   types: {
     success: () => ({
       color: css.success,
@@ -53,8 +62,10 @@ const state = reactive({
 
 const notificationStyle = computed(() => state.types[props.notification.type]());
 
+const BASE_TIME = 2000 as const;
+
 onMounted(() => {
-  const timer = 3000 + props.index * 1000;
+  const timer = BASE_TIME + props.index * 1000;
   setTimeout(appStore.closeNotification, timer);
 });
 </script>

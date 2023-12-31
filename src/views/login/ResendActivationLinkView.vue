@@ -5,7 +5,7 @@
         <h1>Reenviar e-mail de ativação</h1>
         <IconComponent :path="mdiEmailFastOutline" :size="36"></IconComponent>
       </span>
-      <h2>Informe seu e-mail para reenviaremos o link de ativação</h2>
+      <h2>informe seu e-mail para o envio do link de ativação</h2>
     </div>
 
     <ResendActivationLinkForm></ResendActivationLinkForm>
