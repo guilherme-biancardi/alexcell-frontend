@@ -28,6 +28,8 @@ import SignInForm from '@/components/forms/SignInForm.vue';
 
 .sign-in-text {
   margin-bottom: 14px;
+  line-height: 20px;
+  row-gap: 6px;
 }
 
 .sign-in-text h1 {
@@ -43,7 +45,7 @@ import SignInForm from '@/components/forms/SignInForm.vue';
 
 .sign-in-text h2 {
   font-weight: 400;
-  font-size: 1em;
+  font-size: 0.95em;
   color: var(--gray-dark);
 }
 </style>

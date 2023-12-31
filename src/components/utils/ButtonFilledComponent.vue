@@ -55,7 +55,7 @@ const style = computed(() => {
 
 .button-filled:disabled {
   cursor: no-drop;
-  background-color: var(--light-gray) !important;
+  background-color: var(--gray-light) !important;
 }
 
 .button-filled:not(.filled-hover, :disabled):hover {

@@ -3,10 +3,10 @@ import type { RouteRecordRaw } from 'vue-router';
 type RouterKeys = keyof RouteRecordRaw;
 
 type LoginRoutes = 'login' | 'signIn' | 'forgotPassword' | 'resendActivationLink' | 'resetPasword';
-type AppRoutes = 'app';
+type AppRoutes = 'app' | 'admin' | 'devices';
 export type Routes = 'root' | LoginRoutes | AppRoutes;
 
-type RouterViews = 'root' | 'login';
+type RouterViews = 'root' | 'login' | 'app';
 
 export const createRoute = (path: string, name: Routes) => {
   const route: Map<RouterKeys, RouteRecordRaw[RouterKeys]> = new Map();

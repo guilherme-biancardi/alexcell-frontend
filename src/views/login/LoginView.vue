@@ -1,7 +1,7 @@
 <template>
   <RootContent :width="CONTENT_WIDTH">
     <RouterView v-slot="{ Component }" name="login">
-      <Transition name="login-fade" mode="out-in">
+      <Transition name="slide-x" mode="out-in">
         <component :is="Component" />
       </Transition>
     </RouterView>
@@ -14,7 +14,7 @@ import RootContent from '@/components/contents/RootContent.vue';
 import WavesSvg from '@/components/svg/WavesSvg.vue';
 import { useMediaQuery } from '@vueuse/core';
 
-const CONTENT_WIDTH = 500 as const;
+const CONTENT_WIDTH = 475 as const;
 const isLargeScreen = useMediaQuery(`(min-width: ${CONTENT_WIDTH}px)`);
 </script>
 

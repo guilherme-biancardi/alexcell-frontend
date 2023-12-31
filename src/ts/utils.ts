@@ -1,7 +1,7 @@
 import type { Icon } from '@/components/utils/IconComponent.vue';
 import axios, { AxiosHeaders, type AxiosRequestConfig } from 'axios';
 import type { MaskInputOptions } from 'maska';
-import type { ButtonHTMLAttributes, InputHTMLAttributes } from 'vue';
+import type { ButtonHTMLAttributes, InputHTMLAttributes, StyleValue } from 'vue';
 
 type InputHTMLTypeAttribute =
   | 'button'
@@ -37,6 +37,7 @@ export interface Input {
   maskOptions?: MaskInputOptions;
   maskTokens?: string;
   label?: string;
+  inputStyle?: StyleValue;
 }
 
 type InputKeys = keyof Input;
@@ -44,7 +45,7 @@ type InputKeys = keyof Input;
 const useInput = (
   name: string,
   type: Input['type'] = 'text',
-  value: Input['value'] = undefined
+  value: Input['value'] = ''
 ) => {
   const input: Map<InputKeys, Input[InputKeys]> = new Map();
 
@@ -58,6 +59,7 @@ const useInput = (
   const setMaskOptions = (options: Input['maskOptions']) => input.set('maskOptions', options);
   const setMaskTokens = (tokens: Input['maskTokens']) => input.set('maskTokens', tokens);
   const setLabel = (label: string) => input.set('label', label);
+  const setStyle = (style: Input['inputStyle']) => input.set('inputStyle', style);
 
   return {
     setAttributes,
@@ -66,6 +68,7 @@ const useInput = (
     setMaskOptions,
     setMaskTokens,
     setLabel,
+    setStyle,
     get: () => Object.fromEntries(input) as unknown as Input
   };
 };
