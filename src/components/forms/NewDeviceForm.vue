@@ -5,22 +5,29 @@
       label="Modelo de Celular:"
       @set-value="(val) => (state.modelSelected = val)"
     ></SelectComponent>
-    <fieldset class="device-measure">
-      <InputComponent
-        :="storageInput"
-        @select-value="(val) => (storageInput.value = val)"
-      ></InputComponent>
-      <SelectComponent
-        :default-value="false"
-        :current-value="state.measureSelected"
-        :options="state.measureOptions"
-        label="Tipo de Armazenamento:"
-        @set-value="(val) => (state.measureSelected = val)"
-      ></SelectComponent>
-    </fieldset>
+    <div class="device-measure">
+      <label for="device-storage">Armazenamento:</label>
+      <fieldset name="device-storage">
+        <InputComponent
+          :="storageInput"
+          @select-value="(val) => (storageInput.value = val)"
+        ></InputComponent>
+        <SelectComponent
+          :default-value="false"
+          :current-value="state.measureSelected"
+          :options="state.measureOptions"
+          @set-value="(val) => (state.measureSelected = val)"
+          :select-style="{
+            padding: '12px'
+          }"
+        ></SelectComponent>
+      </fieldset>
+    </div>
+
     <InputComponent :="quantityInput" @select-value="(val) => (quantityInput.value = val)"
       >></InputComponent
     >
+
     <ButtonFilledComponent
       type="submit"
       :attributes="{
@@ -65,12 +72,15 @@ const selectDevicesModels = computed<OptionSelect[]>(
 const storageInputComputed = computed(() => {
   const input = useInput('storage');
   input.setAttributes({
-    maxlength: 4,
+    maxlength: 3,
     required: true,
-    placeholder: 'Armazenamento',
-    autocomplete: 'off'
+    autocomplete: 'off',
+    placeholder: 'ex: 32, 64, 128'
   });
-  input.setMask('####');
+  input.setMask('###');
+  input.setStyle({
+    maxWidth: '20ch'
+  });
   return input.get();
 });
 
@@ -89,6 +99,9 @@ const quantityInputComputed = computed(() => {
       if (value === '') return value;
       return (+value).toLocaleString('pt-BR', { minimumFractionDigits: 0 });
     }
+  });
+  input.setStyle({
+    maxWidth: '20ch'
   });
 
   return input.get();
@@ -172,10 +185,22 @@ form > button {
 }
 
 .device-measure {
-  all: unset;
+  width: 100%;
   display: flex;
-  align-items: flex-end;
-  column-gap: 12px;
-  justify-content: space-between;
+  flex-direction: column;
+  row-gap: 8px;
+}
+
+.device-measure label{
+  font-size: 0.95em;
+  color: var(--gray-dark);
+}
+
+.device-measure fieldset{
+  border: none;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 12px;
 }
 </style>

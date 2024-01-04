@@ -4,3 +4,13 @@ export interface CreateDeviceRequest {
   storage: number;
   quantity: number;
 }
+
+export interface DeleteDeviceRequest {
+  id: number;
+}
+
+export interface GetDevicesCountRequest {
+  data: {
+    devicesCount: number;
+  };
+}

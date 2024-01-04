@@ -1,11 +1,11 @@
-interface Device {
+export interface Device {
   id: number;
   storage: number;
   storageMeasure: 'GB' | 'TB';
   quantity: number;
 }
 
-interface DeviceModel {
+export interface DeviceModel {
   id: number;
   model: string;
   brand: string;

@@ -1,7 +1,7 @@
 import type { Icon } from '@/components/utils/IconComponent.vue';
-import axios, { AxiosHeaders, type AxiosRequestConfig } from 'axios';
+import axios, { type AxiosRequestConfig } from 'axios';
 import type { MaskInputOptions } from 'maska';
-import type { ButtonHTMLAttributes, InputHTMLAttributes, StyleValue } from 'vue';
+import type { ButtonHTMLAttributes, CSSProperties, InputHTMLAttributes } from 'vue';
 
 type InputHTMLTypeAttribute =
   | 'button'
@@ -37,16 +37,12 @@ export interface Input {
   maskOptions?: MaskInputOptions;
   maskTokens?: string;
   label?: string;
-  inputStyle?: StyleValue;
+  inputStyle?: CSSProperties;
 }
 
 type InputKeys = keyof Input;
 
-const useInput = (
-  name: string,
-  type: Input['type'] = 'text',
-  value: Input['value'] = ''
-) => {
+const useInput = (name: string, type: Input['type'] = 'text', value: Input['value'] = '') => {
   const input: Map<InputKeys, Input[InputKeys]> = new Map();
 
   input.set('name', name);
@@ -73,18 +69,16 @@ const useInput = (
   };
 };
 
-export interface ButtonStyle {
-  backgroundColor?: string;
-  color?: string;
-}
-
 export interface Button {
   text?: string;
   type?: ButtonHTMLAttributes['type'];
   attributes?: ButtonHTMLAttributes;
   maxWidth?: number;
-  hover?: ButtonStyle;
-  buttonStyle?: ButtonStyle;
+  hover?: {
+    backgroundColor?: string;
+    color?: string;
+  };
+  buttonStyle?: CSSProperties;
   icon?: Icon;
   invertIcon?: boolean;
   visible?: boolean;

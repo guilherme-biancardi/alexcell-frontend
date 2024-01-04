@@ -111,3 +111,36 @@ ul, menu {
   opacity: 0;
   transform: translateY(-8px);
 }
+
+/* scrollbar */
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #397524 #DFE9EB;
+}
+
+/* Chrome, Edge and Safari */
+*::-webkit-scrollbar {
+  height: 10px;
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background-color: var(--light-medium);
+}
+
+*::-webkit-scrollbar-track:hover {
+  background-color: var(--gray-light);
+}
+
+*::-webkit-scrollbar-track:active {
+  background-color: var(--light-darkness);
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: var(--primary);
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--primary-light);
+}

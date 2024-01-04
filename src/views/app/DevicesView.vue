@@ -48,7 +48,12 @@
         :active="active"
         :width="410"
       >
-        <component :is="getPage.modal.component" @update-device-view="updateDeviceView"></component>
+        <Transition name="fade" mode="out-in">
+          <component
+            :is="getPage.modal.component"
+            @update-device-view="updateDeviceView"
+          ></component>
+        </Transition>
       </ModalComponent>
     </div>
   </AppContent>
@@ -82,7 +87,8 @@ const searchInputComputed = computed(() => {
   const search = useInput('search-device');
   search.setIcon({ path: mdiMagnify });
   search.setStyle({
-    backgroundColor: useCssVar('--light').value
+    backgroundColor: useCssVar('--light').value,
+    maxWidth: '400px'
   });
 
   return search.get();
@@ -192,10 +198,6 @@ const updateDeviceView = () => {
   align-items: center;
   justify-content: space-between;
   column-gap: 12px;
-}
-
-.device-search > div {
-  max-width: 400px;
 }
 
 .device-search button {

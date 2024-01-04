@@ -4,7 +4,7 @@
 
     <select
       v-model="state.value"
-      :style="{ backgroundImage: backgroudIcon, ...(selectStyle as object) }"
+      :style="{ backgroundImage: backgroudIcon, ...selectStyle }"
       id="select"
     >
       <option :value="null" :disabled="defaultDisabled" v-if="defaultValue">
@@ -18,7 +18,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, reactive, watch, type StyleValue } from 'vue';
+import { computed, reactive, watch, type CSSProperties } from 'vue';
 import { useCssVar } from '@vueuse/core';
 import { mdiMenuDown } from '@mdi/js';
 import type { Icon } from './IconComponent.vue';
@@ -36,7 +36,7 @@ export interface Select {
   defaultLabel?: string;
   defaultDisabled?: boolean;
   label?: string;
-  selectStyle?: StyleValue;
+  selectStyle?: CSSProperties;
 }
 
 const color = computed(() => {

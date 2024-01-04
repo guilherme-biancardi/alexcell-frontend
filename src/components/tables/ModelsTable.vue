@@ -1,11 +1,15 @@
 <template>
   <TableComponent :headers="MODEL_TABLE_HEADERS" :table-style="css.modelsTable">
-    <template v-for="(deviceModel, index) in modelsTable" :key="index">
-      <ul class="table-body" :style="{ gridTemplateColumns: css.modelsTable }">
-        <li>{{ deviceModel.brand }}</li>
-        <li>{{ deviceModel.model }}</li>
-        <li>{{ deviceModel.createdAt }}</li>
-      </ul>
+    <template #scroll>
+      <div class="table-scroll">
+        <template v-for="(deviceModel, index) in modelsTable" :key="index">
+          <ul class="table-body" :style="{ gridTemplateColumns: css.modelsTable }">
+            <li>{{ deviceModel.brand }}</li>
+            <li>{{ deviceModel.model }}</li>
+            <li>{{ deviceModel.createdAt }}</li>
+          </ul>
+        </template>
+      </div>
     </template>
   </TableComponent>
 </template>
@@ -31,7 +35,7 @@ const props = defineProps<ModelTable>();
 
 const requestModel = () => {
   const getAllModels = getModelsDeviceModelsRequest({
-    search: props.search
+    search: props.search,
   });
 
   getAllModels.execute().then((res) => {

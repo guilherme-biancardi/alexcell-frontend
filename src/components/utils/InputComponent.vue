@@ -1,17 +1,18 @@
 <template>
   <div class="input-content" :style="{ '--padding-right': `${icon?.size ? icon.size * 2 : 12}px` }">
     <label :for="name" v-if="label">{{ label }}</label>
-    <input
-      :type="type"
-      :="attributes"
-      v-model="state.value"
-      v-maska:[maskOptions]
-      :data-maska="mask"
-      :data-maska-tokens="maskTokens"
-      :id="name"
-      :style="inputStyle"
-    />
-    <IconComponent :="icon" class="input-icon" v-if="icon"></IconComponent>
+    <div :style="inputStyle">
+      <input
+        :type="type"
+        :="attributes"
+        v-model="state.value"
+        v-maska:[maskOptions]
+        :data-maska="mask"
+        :data-maska-tokens="maskTokens"
+        :id="name"
+      />
+      <IconComponent :="icon" class="input-icon" v-if="icon"></IconComponent>
+    </div>
   </div>
 </template>
 
@@ -44,20 +45,24 @@ watch(
 <style scoped>
 .input-content {
   --padding-right: 12px;
+  width: 100%;
+}
 
+.input-content div {
   position: relative;
   display: flex;
   align-items: center;
   width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--gray-light);
+  background-color: var(--light-lightness);
 }
 
 .input-content input {
   width: 100%;
   padding: 12px;
   padding-right: var(--padding-right);
-  background-color: var(--light-lightness);
-  border-radius: 8px;
-  border: 1px solid var(--gray-light);
   font-size: 0.95em;
   transition: all 0.2s ease;
 }

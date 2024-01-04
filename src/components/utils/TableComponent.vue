@@ -6,6 +6,7 @@
     <div class="table-scroll">
       <slot></slot>
     </div>
+    <slot name="scroll"></slot>
   </ul>
 </template>
 
@@ -19,14 +20,9 @@ defineProps<Table>();
 </script>
 
 <style>
-[theme='light'] .table-content {
-  --table-item-odd: #f8f8f8;
+.table-content {
+  --table-item-odd: #f9f9f9;
   --table-border: #ddd;
-}
-
-[theme='dark'] .table-content {
-  --table-item-odd: #1e1e1e;
-  --table-border: #2a2a2a;
 }
 
 .table-content {
@@ -36,6 +32,8 @@ defineProps<Table>();
 
   --item-height: 42px;
   border: 1px solid var(--table-border);
+  overflow: hidden;
+  scrollbar-gutter: stable both-edges;
 }
 
 .table-content :is(.table-header, .table-body) {
